@@ -1,0 +1,253 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="./src/styles/output.css" />
+    <script type="module" src="https://unpkg.com/scrollreveal" defer></script>
+    <script type="module" src="./src/scripts/main.js" defer></script>
+    <script src="./src/scripts/utils.js" defer></script>
+
+    <title>PF Windbnd Vanilla</title>
+  </head>
+  <body class="h-screen p-5">
+    <!-- imagen mobile -->
+    <img
+      src="./src/images/icons/logo-f7862584.svg"
+      class="w-32 h-10 md:hidden"
+      alt="Windbnd"
+    />
+    <header
+      class="flex items-center justify-center flex-col gap-8 md:flex-row md:justify-between mt-3 mb-8"
+    >
+      <img
+        src="./src/images/icons/logo-f7862584.svg"
+        class="w-32 h-10 hidden md:block"
+        alt="Windbnd"
+      />
+      <!-- Abrir el modal -->
+      <button
+        id="abrir"
+        class="flex items-center justify-center flex-row-reverse gap-4 text-gray-500 bg-white rounded-2xl border border-gray-200 h-15 w-[300px] shadow/30"
+      >
+        <img
+          src="./src/images/icons/search.svg"
+          class="w-5 h-5"
+          style="
+            filter: brightness(0) saturate(100%) invert(17%) sepia(99%)
+              saturate(7442%) hue-rotate(357deg) brightness(102%) contrast(107%);
+          "
+        />
+        Add location | Add guests
+      </button>
+      <!-- Modal -->
+      <div id="modal" class="hidden bg-black/50 inset-0 fixed z-50">
+        <div
+          class="bg-white grid grid-cols-3 grid-rows-1 h-[60%] pl-9 md:flex md:flex-row md:px-23 md:pt-20"
+        >
+          <div class="text-xl h-20 flex justify-between items-center md:hidden">
+            <p class=" ">Edit your search</p>
+            <p id="cerrar" class="text-4xl pr-5">x</p>
+          </div>
+          <!-- Sugerencias -->
+          <div
+            class="w-full flex-row grid-cols-1 md:h-full md:w-[600px] md:grid md:grid-rows-6"
+          >
+            <div
+              class="w-full h-15 text-[10px] md:w-full border border-gray-200 rounded-2xl bg-white hover:border-black"
+            >
+              <button
+                id="modal1"
+                class="modals flex flex-col items-start pl-7 pt-3 w-[370px] h-15"
+              >
+                LOCATION
+                <input
+                  id="location"
+                  type="text"
+                  class="border-none outline-none text-sm"
+                  placeholder="escriba la ciudad"
+                />
+              </button>
+            </div>
+            <!-- modal de sugerencias -->
+            <div id="modal-lugar" class="hidden md:mt-8">
+              <p
+                class="sugerencia flex flex-row items-center text-[15px] text-gray-600 gap-3 mb-8"
+              >
+                <svg
+                  class="w-4 h-4"
+                  aria-hidden="true"
+                  xmlns="http://www.w3.org/2000/svg"
+                  width="24"
+                  height="24"
+                  fill="currentColor"
+                  viewBox="0 0 24 24"
+                >
+                  <path
+                    fill-rule="evenodd"
+                    d="M11.906 1.994a8.002 8.002 0 0 1 8.09 8.421 7.996 7.996 0 0 1-1.297 3.957.996.996 0 0 1-.133.204l-.108.129c-.178.243-.37.477-.573.699l-5.112 6.224a1 1 0 0 1-1.545 0L5.982 15.26l-.002-.002a18.146 18.146 0 0 1-.309-.38l-.133-.163a.999.999 0 0 1-.13-.202 7.995 7.995 0 0 1 6.498-12.518ZM15 9.997a3 3 0 1 1-5.999 0 3 3 0 0 1 5.999 0Z"
+                    clip-rule="evenodd"
+                  />
+                </svg>
+                Vaasa Finland
+              </p>
+              <p
+                class="sugerencia flex flex-row items-center text-[15px] text-gray-600 gap-3 mb-8"
+              >
+                <svg
+                  class="w-4 h-5"
+                  aria-hidden="true"
+                  xmlns="http://www.w3.org/2000/svg"
+                  width="24"
+                  height="24"
+                  fill="currentColor"
+                  viewBox="0 0 24 24"
+                >
+                  <path
+                    fill-rule="evenodd"
+                    d="M11.906 1.994a8.002 8.002 0 0 1 8.09 8.421 7.996 7.996 0 0 1-1.297 3.957.996.996 0 0 1-.133.204l-.108.129c-.178.243-.37.477-.573.699l-5.112 6.224a1 1 0 0 1-1.545 0L5.982 15.26l-.002-.002a18.146 18.146 0 0 1-.309-.38l-.133-.163a.999.999 0 0 1-.13-.202 7.995 7.995 0 0 1 6.498-12.518ZM15 9.997a3 3 0 1 1-5.999 0 3 3 0 0 1 5.999 0Z"
+                    clip-rule="evenodd"
+                  />
+                </svg>
+                Helsinki Finland
+              </p>
+              <p
+                class="sugerencia flex flex-row items-center text-[15px] text-gray-600 gap-3 mb-8"
+              >
+                <svg
+                  class="w-4 h-5"
+                  aria-hidden="true"
+                  xmlns="http://www.w3.org/2000/svg"
+                  width="24"
+                  height="24"
+                  fill="currentColor"
+                  viewBox="0 0 24 24"
+                >
+                  <path
+                    fill-rule="evenodd"
+                    d="M11.906 1.994a8.002 8.002 0 0 1 8.09 8.421 7.996 7.996 0 0 1-1.297 3.957.996.996 0 0 1-.133.204l-.108.129c-.178.243-.37.477-.573.699l-5.112 6.224a1 1 0 0 1-1.545 0L5.982 15.26l-.002-.002a18.146 18.146 0 0 1-.309-.38l-.133-.163a.999.999 0 0 1-.13-.202 7.995 7.995 0 0 1 6.498-12.518ZM15 9.997a3 3 0 1 1-5.999 0 3 3 0 0 1 5.999 0Z"
+                    clip-rule="evenodd"
+                  />
+                </svg>
+                Turku Finland
+              </p>
+              <p
+                class="sugerencia flex flex-row items-center text-[15px] text-gray-600 gap-3"
+              >
+                <svg
+                  class="w-4 h-5"
+                  aria-hidden="true"
+                  xmlns="http://www.w3.org/2000/svg"
+                  width="24"
+                  height="24"
+                  fill="currentColor"
+                  viewBox="0 0 24 24"
+                >
+                  <path
+                    fill-rule="evenodd"
+                    d="M11.906 1.994a8.002 8.002 0 0 1 8.09 8.421 7.996 7.996 0 0 1-1.297 3.957.996.996 0 0 1-.133.204l-.108.129c-.178.243-.37.477-.573.699l-5.112 6.224a1 1 0 0 1-1.545 0L5.982 15.26l-.002-.002a18.146 18.146 0 0 1-.309-.38l-.133-.163a.999.999 0 0 1-.13-.202 7.995 7.995 0 0 1 6.498-12.518ZM15 9.997a3 3 0 1 1-5.999 0 3 3 0 0 1 5.999 0Z"
+                    clip-rule="evenodd"
+                  />
+                </svg>
+                Oulu Finland
+              </p>
+            </div>
+          </div>
+          <!--Personas -->
+          <div class="md:w-[600px] flex flex-col gap-4">
+            <button
+              id="modal2"
+              class="modals bg-white rounded-2xl border border-gray-200 hover:border-black h-15 text-[10px] w-full flex flex-col items-start pl-5 pt-3"
+            >
+              GUESTS
+              <span id="cantidad" class="text-gray-500 text-sm"
+                >Add guests</span
+              >
+            </button>
+            <!-- Modal de cantidad -->
+            <div id="padre-cantidad" class="pl-2 hidden">
+              <div class="">
+                <h1 class="">Adults</h1>
+                <p class="text-gray-400 text-[14px]">Ages 13 o obove</p>
+                <div class="flex items-center gap-4 h-8 px-2 text-gray-500">
+                  <button
+                    id=""
+                    class="restar text-2xl h-5 w-8 flex items-center justify-center border pb-1.5 rounded"
+                  >
+                    -
+                  </button>
+                  <span class="resultado"></span>
+                  <button
+                    class="sumar text-2xl h-5 w-8 flex items-center justify-center border pb-1 rounded"
+                  >
+                    +
+                  </button>
+                </div>
+              </div>
+              <div class="mt-4">
+                <h1>Children</h1>
+                <p class="text-gray-400 text-[14px]">Ages 2-12</p>
+                <div class="flex items-center gap-4 h-8 px-2 text-gray-500">
+                  <button
+                    class="restar text-2xl h-5 w-8 flex items-center justify-center border pb-1.5 rounded"
+                  >
+                    -
+                  </button>
+                  <span class="resultado"></span>
+                  <button
+                    class="sumar text-2xl h-5 w-8 flex items-center justify-center border pb-1 rounded"
+                  >
+                    +
+                  </button>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- buscar -->
+          <div
+            class="w-[700px] h-15 flex items-center justify-center md:justify-center md:items-center md:h-15 md:w-[700px]"
+          >
+            <button
+              id="buscar"
+              class="w-[200px] flex bg-red-400 rounded-2xl text-white justify-center gap-x-2 p-2 hover:bg-red-500 transition md:flex"
+            >
+              <img
+                src="./src/images/icons/search.svg"
+                class="w-5 h-5 invert"
+                alt=""
+              />
+              <span>SEARCH</span>
+            </button>
+          </div>
+        </div>
+        <!-- buscar sm -->
+        <!-- <div
+          class="absolute bottom-160 w-full flex justify-center items-center md:hidden"
+        >
+          <button
+            class="bg-red-400 rounded-2xl text-white text-xl h-20 w-[200px] flex flex-row-reverse items-center justify-center p-1"
+          >
+            SEARCH<img
+              src="./src/images/icons/search.svg"
+              class="w-18 h-7 invert"
+              alt=""
+            />
+          </button>
+        </div> -->
+      </div>
+    </header>
+    <main class="p-5">
+      <div class="flex justify-between">
+        <h1 class="font-bold text-3xl">Stay in filandia</h1>
+        <span id="contar"></span>
+      </div>
+      <!-- cards -->
+      <div id="cards2" class="flex items-center justify-center"></div>
+      <div
+        id="cards"
+        class="grid grid-cols-1 mt-10 px-4 gap-8 md:grid md:grid-cols-2 lg:grid-cols-3"
+      ></div>
+    </main>
+  </body>
+</html>
